@@ -18,5 +18,13 @@
       <PackageReference Include="Proto.Remote" Version="0.26.0" />
       <PackageReference Include="Proto.Remote.GrpcCore" Version="0.26.0" />
     </ItemGroup>
+    
+    <ItemGroup>
+        <Protobuf Include="VehicleActorMessages.proto" />        
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProtoGrain Include="VehicleActor.proto" AdditionalImportDirs="." />
+    </ItemGroup>
 
 </Project>

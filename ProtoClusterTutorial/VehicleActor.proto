@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option csharp_namespace = "ProtoClusterTutorial";
+
+import "VehicleActorMessages.proto";
+
+service VehicleActor {
+  rpc ChangeVehiclePosition (ChangeVehiclePositionRequest) returns (ChangeVehiclePositionResponse);
+  rpc GetVehiclePositionsHistory(GetVehiclePositionsHistoryRequest) returns (GetVehiclePositionsHistoryResponse);
+}
