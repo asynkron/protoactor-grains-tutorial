@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option csharp_namespace = "ProtoClusterTutorial";
+
+import "Messages.proto";
+import "google/protobuf/empty.proto";
+
+service SmartBulbGrain {
+  rpc TurnOn (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc TurnOff (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc GetState (google.protobuf.Empty) returns (GetSmartBulbStateResponse);
+}

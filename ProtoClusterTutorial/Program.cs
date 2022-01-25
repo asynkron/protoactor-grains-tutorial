@@ -28,10 +28,10 @@ builder.Services.AddSingleton(provider =>
             identityLookup: new PartitionIdentityLookup()
         )
         .WithClusterKind(
-            kind: "VehicleActor",
+            kind: SmartBulbGrainActor.Kind,
             prop: Props.FromProducer(() =>
-                new VehicleActorActor(
-                    (context, clusterIdentity) => new VehicleActor(context, clusterIdentity)
+                new SmartBulbGrainActor(
+                    (context, clusterIdentity) => new SmartBulbGrain(context, clusterIdentity)
                 )
             )
         );
@@ -44,12 +44,22 @@ builder.Services.AddSingleton(provider =>
         .WithCluster(clusterConfig);
 });
 
-builder.Services.AddHostedService<ActorSystemHostedService>();
+builder.Services.AddHostedService<ActorSystemClusterHostedService>();
 
-builder.Services.AddHostedService<VehicleSimulator>();
+builder.Services.AddHostedService<HouseSimulator>();
 
 var app = builder.Build();
 
-app.MapGet("/", () => Task.FromResult("hello, world"));
+app.MapGet("/", () => Task.FromResult("Hello, Proto.Cluster!"));
+
+app.MapGet("/smart-bulbs/{identity:alpha}", async (ActorSystem actorSystem, string identity) =>
+{
+    var smartBulbState = await actorSystem
+        .Cluster()
+        .GetSmartBulbGrain(identity)
+        .GetState(CancellationToken.None);
+    
+    return smartBulbState.State;
+});
 
 app.Run();

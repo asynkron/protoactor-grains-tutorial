@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option csharp_namespace = "ProtoClusterTutorial";
+
+message GetSmartBulbStateResponse {
+  string state = 1;
+}

@@ -20,11 +20,11 @@
     </ItemGroup>
     
     <ItemGroup>
-        <Protobuf Include="VehicleActorMessages.proto" />        
+        <Protobuf Include="Messages.proto" />        
     </ItemGroup>
 
     <ItemGroup>
-        <ProtoGrain Include="VehicleActor.proto" AdditionalImportDirs="." />
+        <ProtoGrain Include="Grains.proto" AdditionalImportDirs="." />
     </ItemGroup>
 
 </Project>
