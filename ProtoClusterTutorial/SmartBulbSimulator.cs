@@ -3,11 +3,11 @@ using Proto.Cluster;
 
 namespace ProtoClusterTutorial;
 
-public class HouseSimulator : BackgroundService
+public class SmartBulbSimulator : BackgroundService
 {
     private readonly ActorSystem _actorSystem;
 
-    public HouseSimulator(ActorSystem actorSystem)
+    public SmartBulbSimulator(ActorSystem actorSystem)
     {
         _actorSystem = actorSystem;
     }

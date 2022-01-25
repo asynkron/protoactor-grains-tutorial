@@ -34,6 +34,14 @@ builder.Services.AddSingleton(provider =>
                     (context, clusterIdentity) => new SmartBulbGrain(context, clusterIdentity)
                 )
             )
+        )
+        .WithClusterKind(
+            kind: SmartHouseGrainActor.Kind,
+            prop: Props.FromProducer(() =>
+                new SmartHouseGrainActor(
+                    (context, clusterIdentity) => new SmartHouseGrain(context, clusterIdentity)
+                )
+            )
         );
     
     // create the actor system
@@ -46,7 +54,7 @@ builder.Services.AddSingleton(provider =>
 
 builder.Services.AddHostedService<ActorSystemClusterHostedService>();
 
-builder.Services.AddHostedService<HouseSimulator>();
+builder.Services.AddHostedService<SmartBulbSimulator>();
 
 var app = builder.Build();
 

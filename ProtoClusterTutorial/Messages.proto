@@ -5,3 +5,8 @@ option csharp_namespace = "ProtoClusterTutorial";
 message GetSmartBulbStateResponse {
   string state = 1;
 }
+
+message SmartBulbStateChangedRequest {
+  string smart_bulb_identity = 1;
+  bool is_on = 2;
+}

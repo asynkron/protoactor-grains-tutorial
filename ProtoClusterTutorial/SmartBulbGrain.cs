@@ -15,26 +15,42 @@ public class SmartBulbGrain : SmartBulbGrainBase
         _clusterIdentity = clusterIdentity;
     }
 
-    public override Task TurnOn()
+    public override async Task TurnOn()
     {
         if (_state != SmartBulbState.On)
         {
-            _state = SmartBulbState.On;
             Console.WriteLine($"{_clusterIdentity.Identity}: turning smart bulb on");
+            
+            _state = SmartBulbState.On;
+            
+            await NotifyHouse();
         }
-    
-        return Task.CompletedTask;
     }
 
-    public override Task TurnOff()
+    public override async Task TurnOff()
     {
         if (_state != SmartBulbState.Off)
         {
-            _state = SmartBulbState.Off;
             Console.WriteLine($"{_clusterIdentity.Identity}: turning smart bulb off");
+            
+            _state = SmartBulbState.Off;
+            
+            await NotifyHouse();
         }
+    }
     
-        return Task.CompletedTask;
+    private async Task NotifyHouse()
+    {
+        await Context
+            .GetSmartHouseGrain("my-house")
+            .SmartBulbStateChanged(
+                new SmartBulbStateChangedRequest
+                {
+                    SmartBulbIdentity = _clusterIdentity.Identity,
+                    IsOn = _state == SmartBulbState.On
+                },
+                CancellationToken.None
+            );
     }
     
     public override Task<GetSmartBulbStateResponse> GetState()

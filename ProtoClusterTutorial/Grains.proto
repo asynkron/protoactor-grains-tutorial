@@ -10,3 +10,7 @@ service SmartBulbGrain {
   rpc TurnOff (google.protobuf.Empty) returns (google.protobuf.Empty);
   rpc GetState (google.protobuf.Empty) returns (GetSmartBulbStateResponse);
 }
+
+service SmartHouseGrain {
+  rpc SmartBulbStateChanged (SmartBulbStateChangedRequest) returns (google.protobuf.Empty);
+}
