@@ -12,6 +12,8 @@ public class SmartHouseGrain : SmartHouseGrainBase
     public SmartHouseGrain(IContext context, ClusterIdentity clusterIdentity) : base(context)
     {
         _clusterIdentity = clusterIdentity;
+        
+        Console.WriteLine($"{_clusterIdentity.Identity}: created");
     }
 
     public override Task SmartBulbStateChanged(SmartBulbStateChangedRequest request)

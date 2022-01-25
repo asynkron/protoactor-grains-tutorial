@@ -17,13 +17,14 @@ builder.Services.AddSingleton(provider =>
     
     // remote configuration
     
-    var remoteConfig = GrpcCoreRemoteConfig.BindToLocalhost();
+    var remoteConfig = GrpcCoreRemoteConfig
+        .BindToLocalhost();
     
     // cluster configuration
 
     var clusterConfig = ClusterConfig
         .Setup(
-            clusterName: "RealtimeMapCluster",
+            clusterName: "ProtoClusterTutorial",
             clusterProvider: new TestProvider(new TestProviderOptions(), new InMemAgent()),
             identityLookup: new PartitionIdentityLookup()
         )

@@ -23,7 +23,7 @@ public class ActorSystemClusterHostedService : IHostedService
 
     public async Task StopAsync(CancellationToken cancellationToken)
     {
-        Console.WriteLine("Stopping a cluster member");
+        Console.WriteLine("Shutting down a cluster member");
         
         await _actorSystem
             .Cluster()

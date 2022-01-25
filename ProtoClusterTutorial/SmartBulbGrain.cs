@@ -13,6 +13,8 @@ public class SmartBulbGrain : SmartBulbGrainBase
     public SmartBulbGrain(IContext context, ClusterIdentity clusterIdentity) : base(context)
     {
         _clusterIdentity = clusterIdentity;
+
+        Console.WriteLine($"{_clusterIdentity.Identity}: created");
     }
 
     public override async Task TurnOn()
