@@ -3,6 +3,7 @@ using Proto.Cluster;
 using Proto.Cluster.Partition;
 using Proto.Cluster.Testing;
 using Proto.DependencyInjection;
+using Proto.Remote;
 using Proto.Remote.GrpcCore;
 
 namespace ProtoClusterTutorial;
@@ -19,9 +20,10 @@ public static class ActorSystemConfiguration
                 .Setup();
     
             // remote configuration
-    
+
             var remoteConfig = GrpcCoreRemoteConfig
-                .BindToLocalhost();
+                .BindToLocalhost()
+                .WithProtoMessages(MessagesReflection.Descriptor);
     
             // cluster configuration
 

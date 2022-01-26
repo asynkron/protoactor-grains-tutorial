@@ -12,7 +12,7 @@ public class SmartBulbClientSample
         _actorSystem = actorSystem;
     }
     
-    public async Task TurnLightOnInKitchen(CancellationToken ct)
+    public async Task TurnTheLightOnInTheKitchen(CancellationToken ct)
     {
         var smartBulbGrainClient = _actorSystem
             .Cluster()
