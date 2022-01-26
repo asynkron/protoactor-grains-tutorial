@@ -41,6 +41,14 @@ public class SmartBulbGrain : SmartBulbGrainBase
         }
     }
     
+    public override Task<GetSmartBulbStateResponse> GetState()
+    {
+        return Task.FromResult(new GetSmartBulbStateResponse
+        {
+            State = _state.ToString()
+        });
+    }
+    
     private async Task NotifyHouse()
     {
         await Context
@@ -53,13 +61,5 @@ public class SmartBulbGrain : SmartBulbGrainBase
                 },
                 CancellationToken.None
             );
-    }
-    
-    public override Task<GetSmartBulbStateResponse> GetState()
-    {
-        return Task.FromResult(new GetSmartBulbStateResponse
-        {
-            State = _state.ToString()
-        });
     }
 }

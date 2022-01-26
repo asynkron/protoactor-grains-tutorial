@@ -28,10 +28,14 @@ public class SmartBulbSimulator : BackgroundService
 
             if (random.Next(2) > 0)
             {
+                Console.WriteLine($"smart bulb simulator: turning on smart bulb '{randomIdentity}'");
+                
                 await smartBulbGrainClient.TurnOn(stoppingToken);
             }
             else
             {
+                Console.WriteLine($"smart bulb simulator: turning off smart bulb '{randomIdentity}'");
+                
                 await smartBulbGrainClient.TurnOff(stoppingToken);
             }
 
