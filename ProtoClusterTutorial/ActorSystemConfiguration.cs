@@ -1,7 +1,7 @@
 ﻿using Proto;
 using Proto.Cluster;
+using Proto.Cluster.Consul;
 using Proto.Cluster.Partition;
-using Proto.Cluster.Testing;
 using Proto.DependencyInjection;
 using Proto.Remote;
 using Proto.Remote.GrpcCore;
@@ -20,9 +20,12 @@ public static class ActorSystemConfiguration
                 .Setup();
     
             // remote configuration
-
+            
             var remoteConfig = GrpcCoreRemoteConfig
-                .BindToLocalhost()
+                .BindToLocalhost(provider
+                    .GetRequiredService<IConfiguration>()
+                    .GetValue<int>("ProtoRemotePort")
+                )
                 .WithProtoMessages(MessagesReflection.Descriptor);
     
             // cluster configuration
@@ -30,7 +33,7 @@ public static class ActorSystemConfiguration
             var clusterConfig = ClusterConfig
                 .Setup(
                     clusterName: "ProtoClusterTutorial",
-                    clusterProvider: new TestProvider(new TestProviderOptions(), new InMemAgent()),
+                    clusterProvider: new ConsulProvider(new ConsulProviderConfig()),
                     identityLookup: new PartitionIdentityLookup()
                 )
                 .WithClusterKind(

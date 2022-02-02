@@ -6,7 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddActorSystem();
 builder.Services.AddHostedService<ActorSystemClusterHostedService>();
-builder.Services.AddHostedService<SmartBulbSimulator>();
+
+if (builder.Configuration.GetValue<bool>("RunSimulation"))
+{
+    builder.Services.AddHostedService<SmartBulbSimulator>();
+}
 
 var app = builder.Build();
 
