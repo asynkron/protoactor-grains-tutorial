@@ -4,7 +4,7 @@ using Proto.Cluster.Consul;
 using Proto.Cluster.Partition;
 using Proto.DependencyInjection;
 using Proto.Remote;
-using Proto.Remote.GrpcCore;
+using Proto.Remote.GrpcNet;
 
 namespace ProtoClusterTutorial;
 
@@ -21,7 +21,7 @@ public static class ActorSystemConfiguration
     
             // remote configuration
             
-            var remoteConfig = GrpcCoreRemoteConfig
+            var remoteConfig = GrpcNetRemoteConfig
                 .BindToLocalhost(provider
                     .GetRequiredService<IConfiguration>()
                     .GetValue<int>("ProtoRemotePort")

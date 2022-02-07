@@ -17,7 +17,7 @@
       <PackageReference Include="Proto.Cluster.Consul" Version="0.27.0" />
       <PackageReference Include="Proto.Cluster.TestProvider" Version="0.27.0" />
       <PackageReference Include="Proto.Remote" Version="0.27.0" />
-      <PackageReference Include="Proto.Remote.GrpcCore" Version="0.27.0" />
+      <PackageReference Include="Proto.Remote.GrpcNet" Version="0.27.0" />
     </ItemGroup>
     
     <ItemGroup>
