@@ -1,0 +1,22 @@
+member:
+  replicaCount: 2
+
+  image:
+    repository: protoclusteracr.azurecr.io/proto-cluster-tutorial
+    pullPolicy: IfNotPresent
+    tag: "1.0.0"
+
+  podAnnotations: {}
+
+  podSecurityContext:
+    runAsUser: 101
+
+  securityContext:
+    allowPrivilegeEscalation: false
+
+  service:
+    type: ClusterIP
+    port: 5000
+  
+
+
