@@ -1,6 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtoClusterTutorial", "ProtoClusterTutorial\ProtoClusterTutorial.csproj", "{2EF898D7-D1B3-4B30-A8C1-ADB5E2C0D49B}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtoClusterTutorial", "ProtoClusterTutorial\ProtoClusterTutorial.csproj", "{2EF898D7-D1B3-4B30-A8C1-ADB5E2C0D49B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartBulbSimulatorApp", "SmartBulbSimulatorApp\SmartBulbSimulatorApp.csproj", "{AF5BB857-33BB-4D18-82DD-33ABC5538D36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +17,15 @@ Global
 		{2EF898D7-D1B3-4B30-A8C1-ADB5E2C0D49B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EF898D7-D1B3-4B30-A8C1-ADB5E2C0D49B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EF898D7-D1B3-4B30-A8C1-ADB5E2C0D49B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF5BB857-33BB-4D18-82DD-33ABC5538D36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF5BB857-33BB-4D18-82DD-33ABC5538D36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF5BB857-33BB-4D18-82DD-33ABC5538D36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF5BB857-33BB-4D18-82DD-33ABC5538D36}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C43B85C1-6F43-4BB7-B03A-AD4344D2246D}
 	EndGlobalSection
 EndGlobal

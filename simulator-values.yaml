@@ -1,0 +1,22 @@
+member:
+  replicaCount: 1
+
+  image:
+    repository: protoclusteracr.azurecr.io/smart-bulb-simulator
+    pullPolicy: IfNotPresent
+    tag: "1.0.0"
+
+  podAnnotations: {}
+
+  podSecurityContext:
+    runAsUser: 101
+
+  securityContext:
+    allowPrivilegeEscalation: false
+
+  service:
+    type: ClusterIP
+    port: 5000
+  
+
+

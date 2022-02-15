@@ -1,7 +1,10 @@
-﻿using Proto;
+﻿using k8s;
+using Proto;
 using Proto.Cluster;
 using Proto.Cluster.Consul;
+using Proto.Cluster.Kubernetes;
 using Proto.Cluster.Partition;
+using Proto.Cluster.Testing;
 using Proto.DependencyInjection;
 using Proto.Remote;
 using Proto.Remote.GrpcNet;
@@ -10,7 +13,7 @@ namespace ProtoClusterTutorial;
 
 public static class ActorSystemConfiguration
 {
-    public static void AddActorSystem(this IServiceCollection serviceCollection)
+    public static void AddActorSystem(this IServiceCollection serviceCollection, IConfiguration configuration)
     {
         serviceCollection.AddSingleton(provider =>
         {
@@ -18,22 +21,19 @@ public static class ActorSystemConfiguration
 
             var actorSystemConfig = ActorSystemConfig
                 .Setup();
-    
+
             // remote configuration
-            
+
             var remoteConfig = GrpcNetRemoteConfig
-                .BindToLocalhost(provider
-                    .GetRequiredService<IConfiguration>()
-                    .GetValue<int>("ProtoRemotePort")
-                )
-                .WithProtoMessages(MessagesReflection.Descriptor);
-    
+                    .BindToAllInterfaces(advertisedHost: configuration["ProtoActor:AdvertisedHost"])
+                    .WithProtoMessages(MessagesReflection.Descriptor);
+
             // cluster configuration
 
             var clusterConfig = ClusterConfig
                 .Setup(
                     clusterName: "ProtoClusterTutorial",
-                    clusterProvider: new ConsulProvider(new ConsulProviderConfig()),
+                    clusterProvider: new KubernetesProvider(new Kubernetes(KubernetesClientConfiguration.InClusterConfig())),
                     identityLookup: new PartitionIdentityLookup()
                 )
                 .WithClusterKind(
@@ -52,7 +52,7 @@ public static class ActorSystemConfiguration
                         )
                     )
                 );
-    
+
             // create the actor system
 
             return new ActorSystem(actorSystemConfig)
