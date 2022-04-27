@@ -29,11 +29,10 @@ public static class ActorSystemConfiguration
                     .WithProtoMessages(MessagesReflection.Descriptor);
 
             // cluster configuration
-
             var clusterConfig = ClusterConfig
                 .Setup(
                     clusterName: "ProtoClusterTutorial",
-                    clusterProvider: new KubernetesProvider(new Kubernetes(KubernetesClientConfiguration.InClusterConfig())),
+                    clusterProvider: new KubernetesProvider(),
                     identityLookup: new PartitionIdentityLookup()
                 )
                 .WithClusterKind(
