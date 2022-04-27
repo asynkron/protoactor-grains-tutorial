@@ -2,13 +2,12 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ProtoClusterTutorial;
-using SmartBulbSimulatorApp;
 
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((hostContext, services) =>
     {
         services.AddActorSystem(hostContext.Configuration);
-        services.AddHostedService<ClusterClientHostedService>();
+        services.AddHostedService<ActorSystemClusterHostedService>();
         services.AddHostedService<SmartBulbSimulator>();
     })
     .Build();
