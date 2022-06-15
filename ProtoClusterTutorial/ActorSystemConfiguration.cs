@@ -32,7 +32,11 @@ public static class ActorSystemConfiguration
             var clusterConfig = ClusterConfig
                 .Setup(
                     clusterName: "ProtoClusterTutorial",
-                    clusterProvider: new KubernetesProvider(),
+                    
+                    clusterProvider: new TestProvider(new TestProviderOptions(), new InMemAgent()), 
+                    // if running in Kubernetes, use this instead
+                    // clusterProvider: new KubernetesProvider(),
+                    
                     identityLookup: new PartitionIdentityLookup()
                 )
                 .WithClusterKind(
